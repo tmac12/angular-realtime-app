@@ -14,7 +14,8 @@ export class AppComponent {
 
   areAllHubsConnected$ = this.store.select(selectAreAllHubsConnected);
 
-  constructor(private store: Store<RootState>) {
+  //Store required type "RootState"
+  constructor(private store: Store) {
     store.dispatch(createSignalRHub(feedHub));
   }
 }
