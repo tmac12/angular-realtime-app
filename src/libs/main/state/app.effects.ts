@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import {
-  BaseSignalRStoreState,
   selectAreAllHubsConnected,
   signalrHubUnstarted,
   startSignalRHub,
 } from 'ngrx-signalr-core';
-import { filter, first, map, of } from 'rxjs';
+import { filter, first, map } from 'rxjs';
 
-import * as AppActions from './app.actions';
-import { feedHub } from './hubs';
+import * as AppActions from '../../../app/app.actions';
+import { feedHub } from '../../../app/hubs';
+import { RootState } from './app.facade';
 
 @Injectable()
 export class AppEffects {
+  //Store required type "RootState"
   constructor(
     private readonly actions$: Actions,
     private readonly store: Store<RootState>
@@ -37,10 +38,4 @@ export class AppEffects {
       map((_) => AppActions.appStarted()) // TODO : create a custom action when hubs are connected
     )
   );
-}
-
-//for ngRxSignalR a state interface is needed.
-//look at: node_modules/ngrx-signalr-core/lib/selector.dts
-export interface RootState {
-  signalr: BaseSignalRStoreState;
 }

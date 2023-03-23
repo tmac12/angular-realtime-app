@@ -1,6 +1,12 @@
-<div
+<!-- <div
   *ngIf="areAllHubsConnected$ | async as signalRHubConnected; else elseBlock"
+> -->
+<div
+  *ngIf="
+    this.appFacade.areAllHubsConnected$ | async as signalRHubConnected;
+    else elseBlock
+  "
 >
   SignalR CONNECTED
 </div>
-<ng-template #elseBlock> SignlaR NOT CONNECTED </ng-template>
+<ng-template #elseBlock> SignalR NOT CONNECTED </ng-template>

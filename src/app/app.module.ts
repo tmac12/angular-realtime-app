@@ -7,8 +7,9 @@ import { SignalREffects, signalrReducer } from 'ngrx-signalr-core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppEffects } from './app.effects';
+import { AppEffects } from '../libs/main/state/app.effects';
 import { FeedsComponent } from './feeds/feeds.component';
+import { AppFacade } from 'src/libs/main/state/app.facade';
 
 @NgModule({
   declarations: [AppComponent, FeedsComponent],
@@ -23,7 +24,7 @@ import { FeedsComponent } from './feeds/feeds.component';
       name: 'ngrx-signalr-core Samples - Realtime Feed',
     }),
   ],
-  providers: [],
+  providers: [AppFacade],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

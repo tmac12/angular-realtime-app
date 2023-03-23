@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { createSignalRHub, selectAreAllHubsConnected } from 'ngrx-signalr-core';
-import { RootState } from './app.effects';
-import { feedHub } from './hubs';
+import { AppFacade } from 'src/libs/main/state/app.facade';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +9,7 @@ import { feedHub } from './hubs';
 export class AppComponent {
   title = 'realtime-app';
 
-  areAllHubsConnected$ = this.store.select(selectAreAllHubsConnected);
-
-  //Store required type "RootState"
-  constructor(private store: Store<RootState>) {
-    store.dispatch(createSignalRHub(feedHub));
+  constructor(public appFacade: AppFacade) {
+    this.appFacade.createNgRxSignalR();
   }
 }
