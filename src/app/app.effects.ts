@@ -29,13 +29,6 @@ export class AppEffects {
     )
   );
 
-  // loadMaintenances$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(signalrHubUnstarted),
-  //     map((hub) => AppActions.appStarted())
-  //   );
-  // });
-
   appStarted$ = createEffect(() =>
     this.store.pipe(
       select(selectAreAllHubsConnected),
@@ -46,8 +39,8 @@ export class AppEffects {
   );
 }
 
-//per ngRxSignalR è necessario definire l'interfaccia di uno state.
-//questa è presa da node_modules/ngrx-signalr-core/lib/selector.dts
+//for ngRxSignalR a state interface is needed.
+//look at: node_modules/ngrx-signalr-core/lib/selector.dts
 export interface RootState {
   signalr: BaseSignalRStoreState;
 }
